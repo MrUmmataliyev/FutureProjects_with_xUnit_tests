@@ -52,7 +52,6 @@ namespace FutureProjects.Application.Services.UserServices
             return result;
         }
 
-        /// ############### read ##############
         #region
         public async Task<IEnumerable<UserViewModel>> GetAll()
         {
@@ -167,8 +166,6 @@ namespace FutureProjects.Application.Services.UserServices
         #endregion
 
 
-        ////////// ########     updates      ############
-        ///
         public async Task<string> Update(int Id, UserDTO userDTO)
         {
             var result = await _userRepository.GetByAny(x => x.Id == Id);
