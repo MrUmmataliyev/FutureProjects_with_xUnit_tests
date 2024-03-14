@@ -117,7 +117,7 @@ namespace FutureProject.Test.Tests
                 Role = "Admin"
             };
             string result = "";
-            _userservice.Setup(x => x.Update(Id, user)).ReturnsAsync(result);
+            _userservice.Setup(x => x.Update(1, user)).ReturnsAsync(result);
              
             var controller = new UserUpdateController(_userservice.Object);
 
@@ -128,19 +128,19 @@ namespace FutureProject.Test.Tests
         [Fact]
         public async void DeleteUser()
         {
-            int id = 1;
+            int id = 3;
             var user = new User()
             {
-                Id = 1,
+                Id = 3,
                 Name = "Patric",
                 Email = "patric@gmail.com",
                 Password = "123",
                 Login = "patric123",
                 Role = "Admin"
             };
-            var result = true;
+            bool result = true;
 
-            _userservice.Setup(x=> x.DeleteById(id)).ReturnsAsync(result);
+            _userservice.Setup(x=> x.DeleteById(3)).ReturnsAsync(result);
             var controller = new UserDeleteController(_userservice.Object);
             var natija = await controller.DeleteUserById(id);
             Assert.Equal(result, natija);
