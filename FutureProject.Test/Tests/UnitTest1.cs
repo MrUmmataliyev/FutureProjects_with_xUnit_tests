@@ -103,6 +103,49 @@ namespace FutureProject.Test.Tests
 
             Assert.True(CompareModels(result, user));
         }
+        [Fact]
+        public async void UpdateUser_Test()
+        {
+            int Id = 1;
+            var user = new UserDTO()
+            {
+                
+                Name = "Patric",
+                Email = "patric@gmail.com",
+                Password = "123",
+                Login = "patric123",
+                Role = "Admin"
+            };
+            string result = "";
+            _userservice.Setup(x => x.Update(Id, user)).ReturnsAsync(result);
+             
+            var controller = new UserUpdateController(_userservice.Object);
+
+            var natija = await controller.Update(Id, user);
+            
+            Assert.Equal(result, natija);
+        }
+        [Fact]
+        public async void DeleteUser()
+        {
+            int id = 1;
+            var user = new User()
+            {
+                Id = 1,
+                Name = "Patric",
+                Email = "patric@gmail.com",
+                Password = "123",
+                Login = "patric123",
+                Role = "Admin"
+            };
+            var result = true;
+
+            _userservice.Setup(x=> x.DeleteById(id)).ReturnsAsync(result);
+            var controller = new UserDeleteController(_userservice.Object);
+            var natija = await controller.DeleteUserById(id);
+            Assert.Equal(result, natija);
+        }
+
 
     }
 }

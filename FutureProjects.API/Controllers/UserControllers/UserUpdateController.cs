@@ -21,11 +21,11 @@ namespace FutureProjects.API.Controllers.UserControllers
         }
 
         [HttpPatch("UserUpdate")]
-        public async Task<ActionResult<string>> Update(int id, UserDTO model)
+        public async Task<string> Update(int id, UserDTO model)
         {
             var result = await _userService.Update(id, model);
 
-            return Ok(result);
+            return result;
         }
 
         [HttpPatch("UpdateEmail")]
