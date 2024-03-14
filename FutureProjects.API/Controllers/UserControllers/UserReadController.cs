@@ -1,4 +1,6 @@
 ﻿using FutureProjects.Application.Abstractions.IServices;
+using FutureProjects.Domain.Entities.DTOs;
+using FutureProjects.Domain.Entities.Models;
 using FutureProjects.Domain.Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -35,12 +37,12 @@ namespace FutureProjects.API.Controllers.UserControllers
             return Ok(result);
         }
 
-        [HttpPatch("GetById")]
-        public async Task<ActionResult<UserViewModel>> GetById(int id)
+        [HttpGet("GetById")]
+        public async Task<User> GetById(int id)
         {
             var result = await _userService.GetById(id);
 
-            return Ok(result);
+            return result;
         }
 
         [HttpPatch("GetByRole")]

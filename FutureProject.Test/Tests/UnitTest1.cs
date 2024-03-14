@@ -4,6 +4,7 @@ using FutureProjects.Application.Abstractions.IServices;
 using FutureProjects.Application.Mappers;
 using FutureProjects.Domain.Entities.DTOs;
 using FutureProjects.Domain.Entities.Models;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 
 namespace FutureProject.Test.Tests
@@ -82,5 +83,26 @@ namespace FutureProject.Test.Tests
             && inputUser.Login == user.Login && inputUser.Role == user.Role) return true;
             return false;
         }
+        [Fact]
+        public async Task GetUserById_Test()
+        {
+            var user = new User()
+            {
+                Id = 1,
+                Name = "Patric",
+                Email = "patric@gmail.com",
+                Password = "123",
+                Login = "patric123",
+                Role = "Admin"
+            };
+            _userservice.Setup(x => x.GetById(1)).ReturnsAsync(user);
+            var controller = new UserReadController(_userservice.Object);
+            var result = await controller.GetById(1);
+
+
+
+            Assert.True(CompareModels(result, user));
+        }
+
     }
 }
