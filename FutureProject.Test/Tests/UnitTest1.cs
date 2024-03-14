@@ -77,6 +77,9 @@ namespace FutureProject.Test.Tests
             Assert.NotNull(createUser);
             Assert.True(CompareModels(expectedResult, createUser));
         }
+
+
+
         public static bool CompareModels(User inputUser, User user)
         {
             if (inputUser.Name == user.Name && inputUser.Email == user.Email && inputUser.Password == user.Password
