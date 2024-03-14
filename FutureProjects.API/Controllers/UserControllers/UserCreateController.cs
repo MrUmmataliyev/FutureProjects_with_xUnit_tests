@@ -20,11 +20,11 @@ namespace FutureProjects.API.Controllers.UserControllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(UserDTO model)
+        public async Task<User> CreateUser(UserDTO model)
         {
             var result = await _userService.Create(model);
 
-            return Ok(result);
+            return result;
         }
     }
 }
